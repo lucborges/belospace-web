@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styles from './footer.module.css'
 import { Envelope, MapPin, Phone, WhatsappLogo } from '@phosphor-icons/react';
+import Button from '@/components/button';
 
 const Footer = () => {    
     return (
@@ -20,13 +21,17 @@ const Footer = () => {
                         <Phone size={32} />
                         <span>+55 31 99999-9999</span>
                     </div> 
-                    <span>Botão de agende sua visita</span>
+                    <Button className={styles.items}>Agende sua visita</Button>
                 </div>
                 <div className={styles.logo}>
                     <Image src={"/logo.png"} alt='Logo BeloSpace' width={180} height={180} /> 
                 </div>
                 <div className={styles.rigth}>
                     <h2>Unidades</h2>
+                    <div className={styles.items}>
+                        <span>BeloSpace Sion - Rua fulano de tal</span>
+                        <MapPin size={32} />
+                    </div>
                     <div className={styles.items}>
                         <span>BeloSpace Sion - Rua fulano de tal</span>
                         <MapPin size={32} />
