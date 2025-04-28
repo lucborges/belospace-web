@@ -19,7 +19,7 @@ const Navbar = () => {
                     <a onClick={() => router.push("/reservation")}>Reservas</a>
                     <a onClick={() => router.push("/reservation")}>Sobre</a>
                 </div>
-                <div className={styles.profile}>
+                <div className={styles.profile}>         
                     <UserCircle size={32} onClick={() => router.push("/profile")}/>
                     <span onClick={() => router.push("/profile")}>Roberto</span>
                     <button className={styles.menuBtn} onClick={() => setMenuOpen(!menuOpen)}>
