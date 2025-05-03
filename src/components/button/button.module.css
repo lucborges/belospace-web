@@ -3,8 +3,6 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background-color: var(--color-secondary);
-    color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
@@ -14,6 +12,16 @@
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
     transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
+
+.primary {
+    background-color: var(--color-secondary);
+    color: white;
+  }
+  
+  .secondary {
+    background-color: white;
+    color: var(--color-secondary);
+  }
 
 .button:disabled {
     background-color: #ccc;
