@@ -3,7 +3,7 @@
   width: 100%;
   flex-direction: row;
   height: 100px;
-  background-color: #fff;
+  background-color: #F7F3EA;
   align-items: center;
   justify-content: space-around;
 }
@@ -15,6 +15,9 @@
   display: flex;
   justify-content: center;
   font-size: 40px;
+}
+
+.logo img {
   cursor: pointer;
 }
 
@@ -32,22 +35,17 @@
 }
 
 .navItens a:hover {
-  color: var(--color-primary);
+  color: var(--color-secondary);
   transition: all 0.3s ease;
-  border-bottom: 2px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-secondary);
 }
 
-.profile {
+.buttonGroup {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 33.3%;
   gap: 5px;
-}
-
-.profile svg,
-.profile span {
-  cursor: pointer;
 }
 
 .menuBtn {
@@ -63,7 +61,7 @@
   .navItens {
     display: none;
     position: absolute;
-    top: 100px;
+    top: 210px;
     left: 0;
     width: 100%;
     flex-direction: column;
@@ -75,7 +73,22 @@
     border-top: 1px solid #eee;
   }
 
-  .navItens.show {
+  .buttonGroup {
+      display: none;
+      position: absolute;
+      top: 100px;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      background: #fff;
+      padding: 1rem 0;
+      z-index: 10;
+      border-top: 1px solid #eee;
+  }
+
+  .navItens.show, .buttonGroup.show {
     display: flex;
   }
 
