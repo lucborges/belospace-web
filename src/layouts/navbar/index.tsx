@@ -51,7 +51,9 @@ const Navbar = () => {
           </a>
         </div>
         <div className={`${styles.buttonGroup} ${menuOpen ? styles.show : ""}`}>
-          <Button>Agende sua Visita</Button>
+          <Button onClick={() => router.push("/reservation")}>
+            Agende sua reserva
+          </Button>
           <Button appearance="secondary">
             <>
               <SignIn size={16} />
