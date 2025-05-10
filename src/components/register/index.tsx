@@ -1,11 +1,9 @@
-'use client';
 
 import React from "react";
 import { useForm } from 'react-hook-form';
 import Input from "../Input/Input";
 import Button from "../button/index";
 import styles from './register.module.css'
-import InputSelect from '../InputSelect/InputSelect';
 import api from '../../services/api';
 import {useRouter} from "next/navigation";
 import Image from "next/image";
@@ -66,13 +64,6 @@ const Register: React.FC = () => {
             required
           />
           {errors.password && <span className={styles.error}>Senha obrigatória</span>}
-          <InputSelect
-            label="Tipo de usuario"
-            name="role"
-            options={['ADMIN', 'CLIENTE']}
-            register={register}
-            required
-          />
           <Button type="submit" appearance="primary" className='loginRegisterButton'>
           Registrar
           </Button>

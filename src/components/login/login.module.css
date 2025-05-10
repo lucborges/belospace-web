@@ -64,6 +64,7 @@
 }
 
 .registerLink a {
+  cursor: pointer;
   font-weight: bold;
   color: #FF7A00;
   text-decoration: none;

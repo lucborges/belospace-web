@@ -1,8 +1,10 @@
 import Button from "@/components/button";
 import styles from "./spaces.module.css";
 import { ImageCarousel } from "@/components/carousel/carousel";
+import { useRouter } from "next/navigation";
 
 const Spaces = () => {
+  const router = useRouter();
   return (
     <div className={styles.container}>
       <ImageCarousel
@@ -33,7 +35,9 @@ const Spaces = () => {
           Temos escritórios, estações de trabalho, salas de reunião e espaços
           para eventos corporativos para diversos formatos de times e empresas.
         </span>
-        <Button>Agende já sua visita</Button>
+        <Button onClick={() => router.push("/reservation")}>
+          Agende já sua reserva
+        </Button>
       </div>
     </div>
   );

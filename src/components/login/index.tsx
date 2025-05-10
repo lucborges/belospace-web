@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import Input from "../../components/Input/Input";
@@ -7,7 +5,6 @@ import Button from "../../components/button/index";
 import styles from './login.module.css';
 import Image from 'next/image';
 import api from '../../services/api';
-import { useState } from 'react';
 import { LoginFormData } from './interface';
 import {useRouter} from 'next/router';
 
@@ -20,8 +17,7 @@ const UseLogin: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormData>();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [click, setClick] = useState(false);
+
 
   const onSubmit = async (data: LoginFormData) => {
     try {
