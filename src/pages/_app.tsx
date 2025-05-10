@@ -1,8 +1,6 @@
 
 import '../styles/theme.css';
 import '../styles/global.css';
-import { CSSProperties } from 'react';
-import Footer from "@/layouts/footer";
 import "../styles/global.css";
 import "../styles/theme.css";
 import type { AppProps } from "next/app";
@@ -20,16 +18,6 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-const containerStyle: CSSProperties = {
-  display: 'flex',
-  width: '100%',
-  justifyContent: 'center',
-  alignItems: 'center',
-  minHeight: '100vh',
-  background: "url('/backgroundLogin.jpg') no-repeat center center",
-  backgroundSize: 'cover',
-  position: 'relative',
-};
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
