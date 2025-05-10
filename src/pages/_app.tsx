@@ -1,11 +1,9 @@
-import Footer from '@/layouts/footer';
+
 import '../styles/global.css';
 import '../styles/theme.css';
-
+import { CSSProperties } from 'react';
 import type { AppProps } from 'next/app';
 import { Poppins } from 'next/font/google';
-import Navbar from '@/layouts/navbar';
-import Head from 'next/head';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -13,22 +11,24 @@ const poppins = Poppins({
   variable: '--font-poppins',
 });
 
+const containerStyle: CSSProperties = {
+  display: 'flex',
+  width: '100%',
+  justifyContent: 'center',
+  alignItems: 'center',
+  minHeight: '100vh',
+  background: "url('/backgroundLogin.jpg') no-repeat center center",
+  backgroundSize: 'cover',
+  position: 'relative',
+};
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <main className={poppins.className}>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '100vh'
-      }}>
-        <Navbar />
-        <Head>
-          <title>BeloSpace</title>
-        </Head>
+      <div style={containerStyle}>
         <div style={{ flex: 1 }}>
           <Component {...pageProps} />
         </div>
-        <Footer />
       </div>
     </main>
   );
