@@ -44,8 +44,12 @@ const UseLogin: React.FC = () => {
     <div className={styles.loginContainer}>
       <div className={styles.loginBox}>
         <Image 
-          src='/logo.png' alt="Belo space logo"    
-          className={styles.loginLogo} />
+          src='/logo.png' 
+          alt="Belo space logo" 
+          width={180}
+          height={180}
+          className={styles.loginLogo} 
+        />
         <div className={styles.loginHeader}>
          <span style={{color: 'rgba(24, 52, 77, 1)', fontWeight: '600'}}>Bem-vindo(a)!</span>
           <span>insira as informações nos respectivos campos para cadastrar no sistema</span>
