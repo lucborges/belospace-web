@@ -9,7 +9,7 @@
     top: 40px;
 }
 
-/* :global(.swiper-pagination-bullet) {
+:global(.swiper-pagination-bullet) {
     background: #F58220;
 }
 
@@ -20,4 +20,4 @@
 :global(.swiper-button-next),
 :global(.swiper-button-prev) {
   color: #ff6600;
-} */
+}
