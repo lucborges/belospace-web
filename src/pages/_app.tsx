@@ -6,9 +6,11 @@ import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";
 import Navbar from "@/layouts/navbar";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
+import { useAuthStore } from "@/stores/useAuthStore";
+
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -16,8 +18,19 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
+
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
+
+  const setUserFromToken = useAuthStore((state) => state.setUserFromToken);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setUserFromToken(token);
+    }
+  }, [setUserFromToken]);
+
   return (
     <QueryClientProvider client={queryClient}>
       <main className={poppins.className}>

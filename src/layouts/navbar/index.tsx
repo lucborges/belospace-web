@@ -1,13 +1,28 @@
-import { List, X, SignIn } from "@phosphor-icons/react";
+import {
+  List,
+  X,
+  SignIn,
+  UserCircle,
+  CaretUp,
+  CaretDown,
+} from "@phosphor-icons/react";
 import styles from "./nav.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "@/components/button";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 const Navbar = () => {
   const router = useRouter();
+  const { user, logout } = useAuthStore();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    router.push("/login");
+  };
 
   return (
     <>
@@ -54,12 +69,52 @@ const Navbar = () => {
           <Button onClick={() => router.push("/reservation")}>
             Agende sua reserva
           </Button>
-          <Button appearance="secondary">
-            <>
-              <SignIn size={16} />
-              Entrar
-            </>
-          </Button>
+          {!user ? (
+            <Button
+              appearance="secondary"
+              onClick={() => router.push("/login")}
+            >
+              <>
+                <SignIn size={16} />
+                Entrar
+              </>
+            </Button>
+          ) : (
+            <div className={styles.profileMenu}>
+              <button
+                className={styles.profileIcon}
+                onClick={() => setShowDropdown(!showDropdown)}
+              >
+                <UserCircle size={40} color="#F5820F" weight="fill" />
+                {showDropdown ? (
+                  <CaretUp size={21} color="#F5820F" />
+                ) : (
+                  <CaretDown size={21} color="#F5820F" />
+                )}
+              </button>
+              {showDropdown && (
+                <div className={styles.dropdown}>
+                  <a
+                    onClick={() => {
+                      router.push("/manage-reservation");
+                      setShowDropdown(!showDropdown);
+                    }}
+                  >
+                    Minhas reservas
+                  </a>
+                  <a
+                    onClick={() => {
+                      router.push("/reservation");
+                      setShowDropdown(!showDropdown);
+                    }}
+                  >
+                    Reservar
+                  </a>
+                  <a onClick={handleLogout}>Sair</a>
+                </div>
+              )}
+            </div>
+          )}
         </div>
         <button
           className={styles.menuBtn}
