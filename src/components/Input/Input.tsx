@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React from "react";
 import styles from "./input.module.css";
 import { UseFormRegister } from "react-hook-form";
+=======
+import React from 'react';
+import styles from './input.module.css';
+import { UseFormRegister } from 'react-hook-form';
+>>>>>>> cfd8317f90a6922f0ca7a50c8ce3e345b4de88aa
 
 type InputProps = {
   label: string;
