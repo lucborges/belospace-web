@@ -1,8 +1,7 @@
-
-import '../styles/theme.css';
-import '../styles/global.css';
+import Footer from "@/layouts/footer";
 import "../styles/global.css";
 import "../styles/theme.css";
+
 import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";
 import Navbar from "@/layouts/navbar";
@@ -31,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             minHeight: "100vh",
           }}
         >
-
+          <Navbar />
           <Head>
             <title>BeloSpace</title>
           </Head>
@@ -39,7 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
             <ToastContainer />
           </div>
-
+          <Footer />
         </div>
       </main>
     </QueryClientProvider>
