@@ -11,11 +11,16 @@ import {
 import { Loader } from "../loader/loader";
 import { ReservationModal } from "./modal/reservation-modal";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 const CreateReservation = () => {
   const [reservedDates, setReservedDates] = useState<Date[]>([]);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedDates, setSelectedDates] = useState<
+    Record<number, Date | null>
+  >({});
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const router = useRouter();
 
   const { data: workspaces, isError } = useWorkspacesWithReservations();
   const {
@@ -24,7 +29,7 @@ const CreateReservation = () => {
     isSuccess: isSuccessReservate,
     reset,
   } = useCreateReservation(() => {
-    setSelectedDate(null);
+    setSelectedDates({});
   });
 
   useEffect(() => {
@@ -33,15 +38,14 @@ const CreateReservation = () => {
     }
   }, [isSuccessReservate]);
 
-  if (isError) return <p>Erro ao carregar os espaços.</p>;
-  if (!workspaces || workspaces.length === 0)
-    return <p>Nenhum espaço encontrado.</p>;
-
-  const handleDateSelect = (date: Date) => {
-    setSelectedDate(date);
-  };
+  // const user = useAuthStore((state) => state.user);
+  // if (!user?.id) {
+  //   toast.error("Usuário não identificado.");
+  //   return;
+  // }
 
   const handleSubmit = async (workspaceId: number) => {
+    const selectedDate = selectedDates[workspaceId];
     if (!selectedDate) {
       toast.error("A data precisa ser selecionada antes de reservar.");
       return;
@@ -50,11 +54,22 @@ const CreateReservation = () => {
     const formattedDate = selectedDate.toISOString().split("T")[0];
     setReservedDates([...reservedDates, selectedDate]);
     mutate({
-      workspaceId: workspaceId,
+      workspaceId,
       reservationDate: formattedDate,
       userId: 4,
       status: "PENDING",
     });
+  };
+
+  if (isError) return <p>Erro ao carregar os espaços.</p>;
+  if (!workspaces || workspaces.length === 0)
+    return <p>Nenhum espaço encontrado.</p>;
+
+  const handleDateSelect = (workspaceId: number, date: Date) => {
+    setSelectedDates((prev) => ({
+      ...prev,
+      [workspaceId]: date,
+    }));
   };
 
   const normalizeName = (name: string) => {
@@ -97,8 +112,8 @@ const CreateReservation = () => {
               </label>
               <DateInput
                 reservedDates={workspace.reservedDates}
-                onDateSelect={handleDateSelect}
-                selectedDate={selectedDate}
+                onDateSelect={(date) => handleDateSelect(workspace.id, date)}
+                selectedDate={selectedDates[workspace.id] || null}
               />
               <label style={{ color: "#cccccc" }}>
                 Você pode selecionar até 1 data.
@@ -136,7 +151,9 @@ const CreateReservation = () => {
               >
                 Fechar
               </Button>
-              <Button>Minha reserva</Button>
+              <Button onClick={() => router.push("/manage-reservation")}>
+                Minha reserva
+              </Button>
             </div>
           </div>
         </ReservationModal>
