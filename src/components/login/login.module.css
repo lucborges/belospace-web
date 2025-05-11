@@ -1,4 +1,3 @@
-
 .loginContainer {
   position: relative;
   display: flex;
@@ -17,6 +16,16 @@
   max-width: 600px;
   width: 100%;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginLogo {
+  margin: 20px 0;
+  display: block;
+  max-width: 180px;
+  height: auto;
 }
 
 .loginBox span{
@@ -36,14 +45,14 @@
   text-align: right;
   top: -10px;
 }
-.loginLogo{
-  max-width: 400px;
-  height: auto;
-  margin: 0 0 20px 90px;
-}
 
 .loginBox form{
+  width: 100%;
   margin-top: 20px;
+}
+
+.button {
+  width: 100%;
 }
 
 .forgotPassword {

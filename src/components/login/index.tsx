@@ -1,14 +1,12 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import Input from "../../components/Input/Input";
-import Button from "../../components/button/index";
-import styles from './login.module.css';
-import Image from 'next/image';
-import api from '../../services/api';
-import { LoginFormData } from './interface';
-import {useRouter} from 'next/router';
-
-
+import React from "react";
+import { useForm } from "react-hook-form";
+import Input from "@/components/Input/Input";
+import Button from "@/components/button/index";
+import styles from "./login.module.css";
+import Image from "next/image";
+import { LoginFormData } from "./interface";
+import { useRouter } from "next/router";
+import { useLogin } from "@/hooks/use-auth";
 
 const UseLogin: React.FC = () => {
   const router = useRouter();
@@ -18,48 +16,44 @@ const UseLogin: React.FC = () => {
     formState: { errors },
   } = useForm<LoginFormData>();
 
+  const { mutate: login } = useLogin(() => {
+    router.push("/dashboard");
+  });
 
-  const onSubmit = async (data: LoginFormData) => {
-    try {
-      const response = await api.post("http://localhost:8081/api/auth/login", {
-        email: data.email,
-        password: data.password,
-      });
-      const result = await response.data.token;
-      localStorage.setItem('token', result);
-
-      console.log("Login realizado com sucesso", data);
-      console.log("Token de login:", result);
-
-      router.push('/dashboard')
-
-    } catch (error: any) {
-      console.error("Erro ao logar", error.response?.data || error.message);
-      alert("erro ao tentar logar");
-    }
-
+  const onSubmit = (data: LoginFormData) => {
+    login(data);
   };
 
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginBox}>
-        <Image 
-          src='/logo.png' alt="Belo space logo"    
-          className={styles.loginLogo} />
+        <Image
+          src="/logo.png"
+          alt="Belo space logo"
+          width={220}
+          height={220}
+          className={styles.loginLogo}
+        />
         <div className={styles.loginHeader}>
-         <span style={{color: 'rgba(24, 52, 77, 1)', fontWeight: '600'}}>Bem-vindo(a)!</span>
-          <span>insira as informações nos respectivos campos para cadastrar no sistema</span>
+          <span style={{ color: "rgba(24, 52, 77, 1)", fontWeight: "600" }}>
+            Bem-vindo(a)!
+          </span>
+          <span>
+            Insira as informações nos respectivos campos para acessar o sistema.
+          </span>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input
-            label="Usuário"
+            label="Email"
             type="email"
             name="email"
             placeholder="exemplo@gmail.com"
             register={register}
             required
           />
-          {errors.email && <span className={styles.error}>E-mail obrigatório</span>}
+          {errors.email && (
+            <span className={styles.error}>E-mail obrigatório</span>
+          )}
           <Input
             label="Senha"
             type="password"
@@ -68,19 +62,25 @@ const UseLogin: React.FC = () => {
             register={register}
             required
           />
-          {errors.password && <span className={styles.error}>E-mail obrigatório</span>}
+          {errors.password && (
+            <span className={styles.error}>E-mail obrigatório</span>
+          )}
           <div className={styles.forgotPassword}>
             <a href="#">Esqueceu sua senha?</a>
           </div>
-          <Button type="submit" appearance="primary" className='loginRegisterButton'>
-          Login
+          <Button type="submit" className={styles.button}>
+            Login
           </Button>
         </form>
         <div className={styles.registerLink}>
-          Ainda não é cliente? <a 
-          onClick= {() => {
-            router.push('/register')
-          }}>Cadastre-se aqui</a>
+          Ainda não é cliente?{" "}
+          <a
+            onClick={() => {
+              router.push("/register");
+            }}
+          >
+            Cadastre-se aqui
+          </a>
         </div>
       </div>
     </div>
@@ -88,4 +88,3 @@ const UseLogin: React.FC = () => {
 };
 
 export default UseLogin;
-

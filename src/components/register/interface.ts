@@ -1,6 +1,6 @@
 export interface RegisterFormData{
-  name: string;
+  fullName: string;
   email: string;
   password: string;
-  role: string[];
+  role: string;
 }
