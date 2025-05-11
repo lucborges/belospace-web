@@ -38,11 +38,11 @@ const CreateReservation = () => {
     }
   }, [isSuccessReservate]);
 
-  // const user = useAuthStore((state) => state.user);
-  // if (!user?.id) {
-  //   toast.error("Usuário não identificado.");
-  //   return;
-  // }
+  const user = useAuthStore((state) => state.user);
+  if (!user?.id) {
+    toast.error("Usuário não identificado.");
+    return;
+  }
 
   const handleSubmit = async (workspaceId: number) => {
     const selectedDate = selectedDates[workspaceId];
@@ -56,7 +56,7 @@ const CreateReservation = () => {
     mutate({
       workspaceId,
       reservationDate: formattedDate,
-      userId: 4,
+      userId: user.id,
       status: "PENDING",
     });
   };

@@ -23,12 +23,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   const setUserFromToken = useAuthStore((state) => state.setUserFromToken);
 
   useEffect(() => {
-    // const token = localStorage.getItem("token");
-    // if (token) {
-    setUserFromToken(
-      "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6NCwic3ViIjoicHVjbWluYXNAZ21haWwuY29tIiwiaWF0IjoxNzQ2ODU0OTE2LCJleHAiOjE3NDY5NDEzMTZ9.QgW_vbu08dpitOM9HfLGoFdVzhS97rgBTOcTVAdY706bL44mlUEh8Ol_eZdgvUksTEv9291hxGoIb9ziBTBrLQ"
-    );
-    // }
+    const token = localStorage.getItem("token");
+    if (token) {
+      setUserFromToken(token);
+    }
   }, [setUserFromToken]);
 
   return (
