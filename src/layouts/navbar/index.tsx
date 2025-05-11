@@ -54,7 +54,7 @@ const Navbar = () => {
           <Button onClick={() => router.push("/reservation")}>
             Agende sua reserva
           </Button>
-          <Button appearance="secondary">
+          <Button appearance="secondary" onClick={() => router.push("/login")}>
             <>
               <SignIn size={16} />
               Entrar

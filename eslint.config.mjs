@@ -22,6 +22,9 @@ const eslintConfig = [
       "no-restricted-globals": "off",
       "react/jsx-no-bind": "off",
       "jsx-a11y/anchor-is-valid": "off",
+      "prettier/prettier": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": "off"
     },
   },
 ];
