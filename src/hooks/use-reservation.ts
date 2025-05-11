@@ -1,5 +1,6 @@
 import api from "@/lib/axios";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 type Workspace = {
   id: number;
@@ -84,8 +85,8 @@ export function useCreateReservation(onSuccessCallback: () => void) {
       queryClient.invalidateQueries({ queryKey: ["reservation"] });
       onSuccessCallback();
     },
-    onError: (error) => {
-      console.error("Erro ao criar reserva:", error);
+    onError: () => {
+      toast.error("Erro ao criar reserva. Tente novamente mais tarde!");
     },
   });
 }
