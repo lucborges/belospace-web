@@ -63,7 +63,7 @@ const UseLogin: React.FC = () => {
             required
           />
           {errors.password && (
-            <span className={styles.error}>E-mail obrigatório</span>
+            <span className={styles.error}>Senha obrigatória</span>
           )}
           <div className={styles.forgotPassword}>
             <a href="#">Esqueceu sua senha?</a>
